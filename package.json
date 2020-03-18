@@ -1,0 +1,43 @@
+{
+  "name": "floof-a-doodle",
+  "version": "1.0.0",
+  "license": "BSD-3-Clause",
+  "scripts": {
+    "dev": "next",
+    "postinstall": "npm rebuild node-sass"
+  },
+  "dependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-decorators": "^7.8.3",
+    "@babel/plugin-proposal-do-expressions": "^7.8.3",
+    "@babel/plugin-proposal-export-default-from": "^7.8.3",
+    "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
+    "@babel/plugin-proposal-optional-chaining": "^7.8.3",
+    "@babel/plugin-proposal-private-methods": "^7.8.3",
+    "@fuelrats/eslint-config": "^2.1.0",
+    "@fuelrats/eslint-config-react": "^2.1.0",
+    "@zeit/next-css": "^1.0.1",
+    "@zeit/next-sass": "^1.0.1",
+    "babel-eslint": "^10.1.0",
+    "color-me-maybe": "^1.0.11",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-loader": "^3.0.3",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsdoc": "^22.1.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^2.5.0",
+    "firebase": "^7.11.0",
+    "glob": "^7.1.6",
+    "next": "^9.3.0",
+    "node-sass": "^4.13.1",
+    "path": "^0.12.7",
+    "postcss-easy-import": "^3.0.0",
+    "postcss-preset-env": "^6.7.0",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
+  }
+}
