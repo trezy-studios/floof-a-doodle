@@ -54,6 +54,16 @@ exports.verifyPixels = functions.database.ref('/{channelID}/unverifiedPixels/{pi
     errors.push(`${userID} drew a pixel ${(Date.now() - pixelsFromUser[0].timestamp) / 1000} seconds ago; they have not waited long enough to draw a new pixel`)
   }
 
+  // Verify that coordinates are in-bounds
+  // TODO: Handle out-of-bounds coordinates on the positive side
+  if (coordinates.x < 0) {
+    errors.push(`${coordinates.x} is out-of-bounds`)
+  }
+
+  if (coordinates.y < 0) {
+    errors.push(`${coordinates.y} is out-of-bounds`)
+  }
+
   // Verify that `color` is a valid color hex
   try {
     Color.fromHex(color)
