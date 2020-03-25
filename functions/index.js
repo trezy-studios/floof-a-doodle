@@ -41,13 +41,13 @@ exports.verifyPixels = functions.database.ref('/{channelID}/unverifiedPixels/{pi
     database.ref(`/${channelID}/pixels`).orderByChild('timestamp').startAt(thirtySecondsAgo).once('value'),
     database.ref(`/${channelID}/unverifiedPixels`).orderByChild('timestamp').startAt(thirtySecondsAgo).once('value'),
   ])
-  const allPixels = Object.values({
+  const allPixels = Object.entries({
     ...(pixelsFromLastThirtySecondsSnapshot.val() || {}),
     ...(unverifiedPixelsFromLastThirtySecondsSnapshot.val() || {}),
   })
 
-  const pixelsFromUser = allPixels.filter(pixel => {
-    return (pixel.userID === userID) && (pixel.timestamp !== timestamp)
+  const pixelsFromUser = allPixels.filter(([xPixelID, pixel]) => {
+    return (pixel.userID === userID) && (xPixelID !== pixelID)
   })
 
   if (pixelsFromUser.length) {
