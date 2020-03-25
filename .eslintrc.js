@@ -7,6 +7,12 @@ module.exports = {
   rules: {
     'arrow-body-style': ['error', 'as-needed'],
     'arrow-parens': ['error', 'as-needed'],
+    'id-length': ['warn', {
+      exceptions: [
+        'x',
+        'y',
+      ],
+    }],
     'max-len': ['off'],
     'new-parens': ['error', 'never'],
     'no-useless-escape': ['off'],
