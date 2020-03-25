@@ -29,6 +29,13 @@ import firebaseConfig from '../helpers/firebaseConfig'
 
 
 
+// Local constants
+const LOCAL_PIXEL_TIMEOUT = 15000
+
+
+
+
+
 // Initialize Firebase
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig)
@@ -51,6 +58,7 @@ const Page = () => {
   const [localPixels, setLocalPixels] = useState({})
   const [authToken, setAuthToken] = useState(null)
   const [channelID, setChannelID] = useState(null)
+  const [unverifiedPixelsRef, setUnverifiedPixelsRef] = useState(null)
   const [userID, setUserID] = useState(null)
 
   const setPixelData = options => {
@@ -116,23 +124,20 @@ const Page = () => {
           const localPixelsClone = {
             ...localPixels,
           }
-          const pixelEntries = Object.entries(snapshot.val())
-          const filteredPixels = pixelEntries.reduce((accumulator, pixelData) => {
-            const [
-              coordinates,
-              pixel,
-            ] = pixelData
+          const pixelEntries = Object.values(snapshot.val())
+          const filteredPixels = pixelEntries.reduce((accumulator, pixel) => {
+            const coordinateString = `${pixel.coordinates.x}-${pixel.coordinates.y}`
 
-            if (accumulator[coordinates]?.timestamp > pixel.timestamp) {
+            if (accumulator[coordinateString]?.timestamp > pixel.timestamp) {
               return accumulator
             }
 
-            accumulator[coordinates] = {
+            accumulator[coordinateString] = {
               ...pixel,
               hasBeenSet: false,
             }
 
-            delete localPixels[coordinates]
+            delete localPixels[coordinateString]
 
             return accumulator
           }, {})
@@ -175,6 +180,7 @@ const Page = () => {
     }
   }, [
     canvasSize,
+    localPixels,
     pixels,
   ])
 
@@ -227,6 +233,7 @@ const Page = () => {
     Twitch.ext.onAuthorized(auth => {
       setAuthToken(auth.token)
       setChannelID(auth.channelId)
+      setUnverifiedPixelsRef(database.ref(`${auth.channelId}/unverifiedPixels`))
       setUserID(auth.userId)
     })
   }, [])
@@ -250,18 +257,27 @@ const Page = () => {
       },
     }))
 
-    database.ref(`${channelID}/unverifiedPixels/${pixelX}-${pixelY}`).set({
+    setTimeout(() => {
+      setLocalPixels(previousLocalPixels => {
+        const previousLocalPixelsClone = {
+          ...previousLocalPixels,
+        }
+        delete previousLocalPixelsClone[`${pixelX}-${pixelY}`]
+        return previousLocalPixelsClone
+      })
+    }, LOCAL_PIXEL_TIMEOUT)
+
+    unverifiedPixelsRef.push({
       authToken,
       color: '#ff0000',
+      coordinates: {
+        x: pixelX,
+        y: pixelY,
+      },
       timestamp: firebase.database.ServerValue.TIMESTAMP,
       userID,
     })
   }
-
-  // console.log('Local pixel existentiation:', Object.keys(localPixels).reduce((accumulator, key) => ({
-  //   ...accumulator,
-  //   [key]: Boolean(pixels[key]),
-  // }), {}))
 
   return (
     <>
