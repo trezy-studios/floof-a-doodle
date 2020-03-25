@@ -48,6 +48,7 @@ const Page = () => {
   const pixelMultiplier = 4
   const mainCanvasRef = useRef(null)
   const [pixels, setPixels] = useState({})
+  const [localPixels, setLocalPixels] = useState({})
   const [authToken, setAuthToken] = useState(null)
   const [channelID, setChannelID] = useState(null)
   const [userID, setUserID] = useState(null)
@@ -81,7 +82,11 @@ const Page = () => {
   const generateImage = () => {
     const canvasElement = mainCanvasRef.current
     const imageDataArray = new Uint8ClampedArray(pixelMultiplier * (canvasElement.width * canvasElement.height))
-    const processedPixels = Object.entries(pixels).reduce((accumulator, [coordinates, pixel]) => {
+    const unprocessedPixels = Object.entries({
+      ...localPixels,
+      ...pixels,
+    })
+    const processedPixels = unprocessedPixels.reduce((accumulator, [coordinates, pixel]) => {
       const [
         pixelX,
         pixelY,
@@ -107,26 +112,34 @@ const Page = () => {
       query.orderByChild('isVerified').equalTo(true)
 
       query.on('value', snapshot => {
-        const pixelEntries = Object.entries(snapshot.val())
-        const filteredPixels = pixelEntries.reduce((accumulator, pixelData) => {
-          const [
-            coordinates,
-            pixel,
-          ] = pixelData
+        if (snapshot.exists()) {
+          const localPixelsClone = {
+            ...localPixels,
+          }
+          const pixelEntries = Object.entries(snapshot.val())
+          const filteredPixels = pixelEntries.reduce((accumulator, pixelData) => {
+            const [
+              coordinates,
+              pixel,
+            ] = pixelData
 
-          if (accumulator[coordinates]?.timestamp > pixel.timestamp) {
+            if (accumulator[coordinates]?.timestamp > pixel.timestamp) {
+              return accumulator
+            }
+
+            accumulator[coordinates] = {
+              ...pixel,
+              hasBeenSet: false,
+            }
+
+            delete localPixels[coordinates]
+
             return accumulator
-          }
+          }, {})
 
-          accumulator[coordinates] = {
-            ...pixel,
-            hasBeenSet: false,
-          }
-
-          return accumulator
-        }, {})
-
-        setPixels(filteredPixels)
+          setLocalPixels(localPixelsClone)
+          setPixels(filteredPixels)
+        }
       })
 
       return () => database.ref(`${channelID}/pixels`).off('value')
@@ -230,6 +243,13 @@ const Page = () => {
     const pixelX = Math.floor(clientX / pixelMultiplier)
     const pixelY = Math.floor(clientY / pixelMultiplier)
 
+    setLocalPixels(previousLocalPixels => ({
+      ...previousLocalPixels,
+      [`${pixelX}-${pixelY}`]: {
+        color: '#ff0000',
+      },
+    }))
+
     database.ref(`${channelID}/unverifiedPixels/${pixelX}-${pixelY}`).set({
       authToken,
       color: '#ff0000',
@@ -237,6 +257,11 @@ const Page = () => {
       userID,
     })
   }
+
+  // console.log('Local pixel existentiation:', Object.keys(localPixels).reduce((accumulator, key) => ({
+  //   ...accumulator,
+  //   [key]: Boolean(pixels[key]),
+  // }), {}))
 
   return (
     <>
