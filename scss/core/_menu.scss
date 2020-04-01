@@ -1,0 +1,94 @@
+menu {
+  background-color: var(--text-color);
+  clip-path: polygon(
+    0 calc(var(--pixel-size) * 2),
+    var(--pixel-size) calc(var(--pixel-size) * 2),
+    var(--pixel-size) var(--pixel-size),
+    calc(var(--pixel-size) * 2) var(--pixel-size),
+    calc(var(--pixel-size) * 2) 0,
+
+    calc(100% - (var(--pixel-size) * 2)) 0,
+    calc(100% - (var(--pixel-size) * 2)) var(--pixel-size),
+    calc(100% - var(--pixel-size)) var(--pixel-size),
+    calc(100% - var(--pixel-size)) calc(var(--pixel-size) * 2),
+    100% calc(var(--pixel-size) * 2),
+
+    100% calc(100% - (var(--pixel-size) * 2)),
+    calc(100% - var(--pixel-size)) calc(100% - (var(--pixel-size) * 2)),
+    calc(100% - var(--pixel-size)) calc(100% - var(--pixel-size)),
+    calc(100% - (var(--pixel-size) * 2)) calc(100% - var(--pixel-size)),
+    calc(100% - (var(--pixel-size) * 2)) 100%,
+
+    calc((var(--caret-size) + var(--pixel-size)) * -1) 100%,
+    calc((var(--caret-size) + var(--pixel-size)) * -1) calc(100% - var(--pixel-size)),
+    calc(var(--caret-size) * -1) calc(100% - var(--pixel-size)),
+    calc(var(--caret-size) * -1) calc(100% - (var(--pixel-size) * 2)),
+    calc((var(--caret-size) - var(--pixel-size)) * -1) calc(100% - (var(--pixel-size) * 2)),
+    calc((var(--caret-size) - var(--pixel-size)) * -1) calc(100% - (var(--pixel-size) * 3)),
+    calc((var(--caret-size) - (var(--pixel-size) * 2)) * -1) calc(100% - (var(--pixel-size) * 3)),
+    calc((var(--caret-size) - (var(--pixel-size) * 2)) * -1) calc(100% - (var(--pixel-size) * 4)),
+    calc((var(--caret-size) - (var(--pixel-size) * 3)) * -1) calc(100% - (var(--pixel-size) * 4)),
+    calc((var(--caret-size) - (var(--pixel-size) * 3)) * -1) calc(100% - (var(--pixel-size) * 5)),
+    calc((var(--caret-size) - (var(--pixel-size) * 4)) * -1) calc(100% - (var(--pixel-size) * 5)),
+  );
+  margin: 0;
+  margin-left: calc(var(--pixel-size) + var(--caret-size) + var(--border-size));
+  max-height: 100%;
+  padding: 0;
+  position: relative;
+
+  &:after {
+    background-color: var(--text-color);
+    bottom: 0;
+    content: '';
+    display: block;
+    height: calc(var(--caret-size) + var(--border-size));
+    position: absolute;
+    right: 100%;
+    width: calc(var(--caret-size) + var(--border-size));
+    z-index: 1;
+  }
+
+  &:before {
+    background-color: var(--background-color);
+    bottom: 0;
+    clip-path: polygon(
+      var(--caret-size) var(--pixel-size),
+      calc(var(--caret-size) + var(--pixel-size)) var(--pixel-size),
+      calc(var(--caret-size) + var(--pixel-size)) 0,
+
+      calc(100% - var(--pixel-size)) 0,
+      calc(100% - var(--pixel-size)) var(--pixel-size),
+      100% var(--pixel-size),
+
+      100% calc(100% - var(--pixel-size)),
+      calc(100% - var(--pixel-size)) calc(100% - var(--pixel-size)),
+      calc(100% - var(--pixel-size)) 100%,
+
+      0 100%,
+      0 calc(100% - var(--pixel-size)),
+      var(--pixel-size) calc(100% - var(--pixel-size)),
+      var(--pixel-size) calc(100% - (var(--pixel-size) * 2)),
+      calc(var(--pixel-size) * 2) calc(100% - (var(--pixel-size) * 2)),
+      calc(var(--pixel-size) * 2) calc(100% - (var(--pixel-size) * 3)),
+      calc(var(--pixel-size) * 3) calc(100% - (var(--pixel-size) * 3)),
+      calc(var(--pixel-size) * 3) calc(100% - (var(--pixel-size) * 4)),
+      calc(var(--pixel-size) * 4) calc(100% - (var(--pixel-size) * 4)),
+      calc(var(--pixel-size) * 4) calc(100% - (var(--pixel-size) * 5)),
+    );
+    content: '';
+    display: block;
+    display: block;
+    left: calc(-1 * var(--caret-size));
+    margin: var(--pixel-size);
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 2;
+  }
+
+  > * {
+    position: relative;
+    z-index: 3;
+  }
+}

@@ -1,0 +1,30 @@
+.options-list {
+  padding-bottom: calc(var(--caret-size) + var(--border-size));
+
+  header,
+  .option {
+    --horizontal-padding: var(--gutter-size);
+    --vertical-padding: calc(var(--pixel-size) * 2);
+
+    padding: var(--vertical-padding) var(--horizontal-padding);
+  }
+
+  .option {
+    align-items: baseline;
+    display: flex;
+    justify-content: space-between;
+
+    &:hover {
+      background-color: hsla(
+        var(--text-color-h),
+        var(--text-color-s),
+        var(--text-color-l),
+        0.2,
+      );
+    }
+
+    input {
+      text-align: right;
+    }
+  }
+}

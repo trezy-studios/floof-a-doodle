@@ -24,6 +24,7 @@ import 'firebase/database'
 
 // Local imports
 import firebaseConfig from '../helpers/firebaseConfig'
+import Chrome from '../components/Chrome'
 
 
 
@@ -294,6 +295,8 @@ const Page = () => {
         width={canvasSize.width}
         /* eslint-disable-next-line react/jsx-no-bind */
         onClick={handleCanvasClick} />
+
+      <Chrome />
     </>
   )
 }

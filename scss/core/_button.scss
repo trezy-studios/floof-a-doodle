@@ -1,0 +1,77 @@
+button,
+.button {
+  align-items: center;
+  background-color: var(--text-color);
+  background-image: none;
+  border: none;
+  border-radius: 0;
+  clip-path: polygon(
+    0 calc(var(--pixel-size) * 2),
+    var(--pixel-size) calc(var(--pixel-size) * 2),
+    var(--pixel-size) var(--pixel-size),
+    calc(var(--pixel-size) * 2) var(--pixel-size),
+    calc(var(--pixel-size) * 2) 0,
+
+    calc(100% - (var(--pixel-size) * 2)) 0,
+    calc(100% - (var(--pixel-size) * 2)) var(--pixel-size),
+    calc(100% - var(--pixel-size)) var(--pixel-size),
+    calc(100% - var(--pixel-size)) calc(var(--pixel-size) * 2),
+    100% calc(var(--pixel-size) * 2),
+
+    100% calc(100% - (var(--pixel-size) * 2)),
+    calc(100% - var(--pixel-size)) calc(100% - (var(--pixel-size) * 2)),
+    calc(100% - var(--pixel-size)) calc(100% - var(--pixel-size)),
+    calc(100% - (var(--pixel-size) * 2)) calc(100% - var(--pixel-size)),
+    calc(100% - (var(--pixel-size) * 2)) 100%,
+
+    calc(var(--pixel-size) * 2) 100%,
+    calc(var(--pixel-size) * 2) calc(100% - var(--pixel-size)),
+    var(--pixel-size) calc(100% - var(--pixel-size)),
+    var(--pixel-size) calc(100% - (var(--pixel-size) * 2)),
+    0 calc(100% - (var(--pixel-size) * 2)),
+  );
+  color: var(--text-color);
+  cursor: pointer;
+  display: flex;
+  font-family: inherit;
+  font-size: inherit;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  padding: var(--gutter-size);
+  position: relative;
+
+  &:before {
+    background-color: var(--background-color);
+    bottom: var(--border-size);
+    clip-path: polygon(
+      0 var(--pixel-size),
+      var(--pixel-size) var(--pixel-size),
+      var(--pixel-size) 0,
+
+      calc(100% - var(--pixel-size)) 0,
+      calc(100% - var(--pixel-size)) var(--pixel-size),
+      100% var(--pixel-size),
+
+      100% calc(100% - var(--pixel-size)),
+      calc(100% - var(--pixel-size)) calc(100% - var(--pixel-size)),
+      calc(100% - var(--pixel-size)) 100%,
+
+      var(--pixel-size) 100%,
+      var(--pixel-size) calc(100% - var(--pixel-size)),
+      0 calc(100% - var(--pixel-size)),
+    );
+    content: '';
+    display: block;
+    left: var(--border-size);
+    position: absolute;
+    right: var(--border-size);
+    top: var(--border-size);
+    z-index: 1;
+  }
+
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+}

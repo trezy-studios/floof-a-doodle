@@ -1,0 +1,10 @@
+:root {
+  --control-placement: flex-end;
+  --pixel-scale: 2;
+
+  --pixel-size: calc(1px * var(--pixel-scale));
+
+  --border-size: calc(var(--pixel-size) * 1);
+  --caret-size: calc(var(--pixel-size) * 4);
+  --gutter-size: calc(var(--pixel-size) * 5);
+}

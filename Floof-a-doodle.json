@@ -18,31 +18,8 @@
   ],
   "extensionViews": [
     {
-      "id": "1",
-      "label": "Viewer Mode",
-      "channelId": "72632519",
-      "configurationAnchor": "video_overlay",
-      "displayChannelName": "trezycodes",
-      "type": "video_overlay",
-      "features": {
-        "isBitsEnabled": true,
-        "isChatEnabled": true,
-        "isSubscriptionStatusAvailable": true
-      },
-      "linked": false,
-      "linkedUserId": "",
-      "mode": "viewer",
-      "isPopout": false,
-      "role": "Logged-In Viewer",
-      "orientation": "Portrait",
-      "frameSize": {
-        "width": 1600,
-        "height": 900
-      }
-    },
-    {
       "id": "2",
-      "label": "Broadcaster Mode",
+      "label": "",
       "channelId": "72632519",
       "configurationAnchor": "video_overlay",
       "displayChannelName": "trezycodes",
@@ -53,7 +30,7 @@
         "isSubscriptionStatusAvailable": false
       },
       "linked": true,
-      "linkedUserId": "72632519",
+      "linkedUserId": "265737932",
       "mode": "viewer",
       "isPopout": false,
       "role": "Logged-In Viewer",

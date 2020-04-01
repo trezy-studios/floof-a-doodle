@@ -1,0 +1,59 @@
+input,
+textarea {
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  margin: 0;
+  padding: 0;
+
+  &[type="color"] {
+    // border-color: var(--text-color);
+    // border-style: solid;
+    // border-width: var(--pixel-size);
+    height: 2ex;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 3ex;
+
+    // &::after {
+    //   --pixel-size: 6px;
+    //   background-color: green;
+    //   bottom: 0;
+    //   clip-path: polygon(
+    //     0 0,
+    //     100% 0,
+    //     100% 100%,
+    //     0 100%,
+    //     0 0,
+    //     var(--pixel-size) 0,
+    //     var(--pixel-size) calc(100% - var(--pixel-size)),
+    //     calc(100% - var(--pixel-size)) calc(100% - var(--pixel-size)),
+    //     calc(100% - var(--pixel-size)) var(--pixel-size),
+    //     0 var(--pixel-size),
+    //   );
+    //   content: '';
+    //   display: block;
+    //   left: 0;
+    //   // mix-blend-mode: color-burn;
+    //   position: absolute;
+    //   right: 0;
+    //   top: 0;
+    // }
+
+    &::-webkit-color-swatch-wrapper {
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    &::-moz-color-swatch,
+    &::-webkit-color-swatch {
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+  }
+}

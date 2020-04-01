@@ -37,6 +37,7 @@
     "path": "^0.12.7",
     "postcss-easy-import": "^3.0.0",
     "postcss-preset-env": "^6.7.0",
+    "prop-types": "^15.7.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
   }

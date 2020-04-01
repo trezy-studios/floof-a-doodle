@@ -27,6 +27,7 @@ module.exports = {
       namedComponents: 'arrow-function',
       unnamedComponents: 'arrow-function',
     }],
+    'react/jsx-no-bind': ['off'],
 
     'react/jsx-curly-newline': ['error', 'never'],
 
