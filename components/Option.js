@@ -69,11 +69,15 @@ Option.defaultProps = {
 
 Option.propTypes = {
   label: PropTypes.string.isRequired,
-  max: PropTypes.string,
-  min: PropTypes.string,
-  step: PropTypes.string,
+  max: PropTypes.number,
+  min: PropTypes.number,
+  step: PropTypes.number,
   type: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.number,
+    PropTypes.string,
+  ]).isRequired,
 }
 
 
