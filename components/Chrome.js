@@ -9,6 +9,7 @@ import React, {
 
 // Local imports
 import AllOptions from './AllOptions'
+import RequiresAuthentication from './RequiresAuthentication'
 
 
 
@@ -20,16 +21,18 @@ const Chrome = () => {
   const handleMenuButtonClick = () => setHidden(!hidden)
 
   return (
-    <div className="chrome-wrapper">
-      <button
-        name="menu-control"
-        type="button"
-        onClick={handleMenuButtonClick}>
-        <span>{'FD'}</span>
-      </button>
+    <RequiresAuthentication>
+      <div className="chrome-wrapper">
+        <button
+          name="menu-control"
+          type="button"
+          onClick={handleMenuButtonClick}>
+          <span>{'FD'}</span>
+        </button>
 
-      <AllOptions hidden={hidden} />
-    </div>
+        <AllOptions hidden={hidden} />
+      </div>
+    </RequiresAuthentication>
   )
 }
 

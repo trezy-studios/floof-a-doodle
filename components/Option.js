@@ -18,6 +18,7 @@ const Option = props => {
     label,
     min,
     max,
+    onChange,
     step,
     type,
     value,
@@ -36,7 +37,8 @@ const Option = props => {
           id={id}
           name={id}
           type={type}
-          value={value} />
+          value={value}
+          onChange={onChange} />
       )}
 
       {(type === 'checkbox') && (
@@ -44,7 +46,8 @@ const Option = props => {
           checked={value}
           id={id}
           name={id}
-          type="checkbox" />
+          type="checkbox"
+          onChange={onChange} />
       )}
 
       {(type === 'range') && (
@@ -55,7 +58,8 @@ const Option = props => {
           name={id}
           step={step}
           type="range"
-          value={value} />
+          value={value}
+          onChange={onChange} />
       )}
     </li>
   )
@@ -64,6 +68,7 @@ const Option = props => {
 Option.defaultProps = {
   max: 1,
   min: 0,
+  onChange: () => {},
   step: 0.1,
 }
 
@@ -71,6 +76,7 @@ Option.propTypes = {
   label: PropTypes.string.isRequired,
   max: PropTypes.number,
   min: PropTypes.number,
+  onChange: PropTypes.func,
   step: PropTypes.number,
   type: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([

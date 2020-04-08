@@ -4,7 +4,12 @@
   display: flex;
   left: 0;
   padding: var(--gutter-size);
+  pointer-events: none;
   position: absolute;
   right: 140px;
   top: 100px;
+
+  > * {
+    pointer-events: initial;
+  }
 }
