@@ -10,26 +10,30 @@ import PropTypes from 'prop-types'
 
 
 // Local constants
-const context = createContext({
+const LOCAL_CONFIG_DEFAULTS = {
   authToken: null,
   channelID: null,
   color: '#ff0000',
+  opacity: 40,
   userID: null,
   setAuthToken: () => {},
   setChannelID: () => {},
   setColor: () => {},
+  setOpacity: () => {},
   setUserID: () => {},
-})
+}
+const context = createContext(LOCAL_CONFIG_DEFAULTS)
 
 
 
 
 
 const Provider = props => {
-  const [authToken, setAuthToken] = useState(null)
-  const [channelID, setChannelID] = useState(null)
-  const [color, setColor] = useState('#ff0000')
-  const [userID, setUserID] = useState(null)
+  const [authToken, setAuthToken] = useState(LOCAL_CONFIG_DEFAULTS.authToken)
+  const [channelID, setChannelID] = useState(LOCAL_CONFIG_DEFAULTS.channelID)
+  const [color, setColor] = useState(LOCAL_CONFIG_DEFAULTS.color)
+  const [opacity, setOpacity] = useState(LOCAL_CONFIG_DEFAULTS.opacity)
+  const [userID, setUserID] = useState(LOCAL_CONFIG_DEFAULTS.userID)
 
   const { children } = props
 
@@ -39,10 +43,12 @@ const Provider = props => {
         authToken,
         channelID,
         color,
+        opacity,
         userID,
         setAuthToken,
         setChannelID,
         setColor,
+        setOpacity,
         setUserID,
       }}>
       {children}

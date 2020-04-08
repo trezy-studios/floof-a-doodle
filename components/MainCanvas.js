@@ -42,10 +42,9 @@ const MainCanvas = props => {
   } = useContext(PixelContext)
   const {
     channelID,
+    opacity,
   } = useContext(LocalConfigContext)
   const canvasElementRef = createRef(null)
-
-  // const { color } = useContext(LocalConfigContext)
 
   // Setup database listeners
   useEffect(() => {
@@ -124,6 +123,7 @@ const MainCanvas = props => {
         ref={canvasElementRef}
         className="main-canvas"
         height={height}
+        style={{ opacity: (opacity / 100) }}
         width={width} />
     </RequiresAuthentication>
   )
