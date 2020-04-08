@@ -66,10 +66,10 @@ const Option = props => {
 }
 
 Option.defaultProps = {
-  max: 1,
+  max: 100,
   min: 0,
   onChange: () => {},
-  step: 0.1,
+  step: 1,
 }
 
 Option.propTypes = {
