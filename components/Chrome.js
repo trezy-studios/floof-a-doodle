@@ -18,7 +18,7 @@ import RequiresAuthentication from './RequiresAuthentication'
 const Chrome = () => {
   const [hidden, setHidden] = useState(true)
 
-  const handleMenuButtonClick = () => setHidden(!hidden)
+  const onMenuButtonClick = () => setHidden(!hidden)
 
   return (
     <RequiresAuthentication>
@@ -26,11 +26,13 @@ const Chrome = () => {
         <button
           name="menu-control"
           type="button"
-          onClick={handleMenuButtonClick}>
+          onClick={onMenuButtonClick}>
           <span>{'FD'}</span>
         </button>
 
-        <AllOptions hidden={hidden} />
+        <AllOptions
+          close={() => setHidden(true)}
+          hidden={hidden} />
       </div>
     </RequiresAuthentication>
   )
