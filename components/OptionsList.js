@@ -7,6 +7,7 @@ import React from 'react'
 
 
 // Local imports
+import idify from '../helpers/idify'
 import Option from './Option'
 
 
@@ -26,7 +27,7 @@ const OptionsList = props => {
       <ul>
         {options.map(option => (
           <Option
-            key={JSON.stringify(option)}
+            key={idify(option.label)}
             {...option} />
         ))}
       </ul>
