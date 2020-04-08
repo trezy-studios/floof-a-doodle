@@ -1,6 +1,15 @@
+dl,
 ol,
 ul {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+dt {
+  margin-right: var(--gutter-size);
+}
+
+dd {
+  margin: 0;
 }

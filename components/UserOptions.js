@@ -35,9 +35,9 @@ const UserOptions = () => {
   // the value of the input does not change.
   const colorOption = useRef({
     label: 'Color',
-    onChange: ({ target }) => {
-      colorOption.current.value = target.value
-      setColor(target.value)
+    onChange: ({ hex }) => {
+      colorOption.current.value = hex
+      setColor(hex)
     },
     type: 'color',
     value: color,

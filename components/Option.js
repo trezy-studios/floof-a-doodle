@@ -1,6 +1,7 @@
 // Module imports
-import PropTypes from 'prop-types'
+import { ChromePicker } from 'react-color'
 import React from 'react'
+import PropTypes from 'prop-types'
 
 
 
@@ -27,41 +28,52 @@ const Option = props => {
   const id = idify(label)
 
   return (
-    <li className="option">
-      <label htmlFor={id}>
-        {label}
-      </label>
+    <>
+      <dt className="option">
+        <label htmlFor={id}>
+          {label}
+        </label>
+      </dt>
 
-      {['color', 'number'].includes(type) && (
-        <input
-          id={id}
-          name={id}
-          type={type}
-          value={value}
-          onChange={onChange} />
-      )}
+      <dd>
+        {(type === 'color') && (
+          <ChromePicker
+            disableAlpha
+            color={value}
+            onChange={onChange} />
+        )}
 
-      {(type === 'checkbox') && (
-        <input
-          checked={value}
-          id={id}
-          name={id}
-          type="checkbox"
-          onChange={onChange} />
-      )}
+        {(type === 'number') && (
+          <input
+            id={id}
+            name={id}
+            type={type}
+            value={value}
+            onChange={onChange} />
+        )}
 
-      {(type === 'range') && (
-        <input
-          id={id}
-          max={max}
-          min={min}
-          name={id}
-          step={step}
-          type="range"
-          value={value}
-          onChange={onChange} />
-      )}
-    </li>
+        {(type === 'checkbox') && (
+          <input
+            checked={value}
+            id={id}
+            name={id}
+            type="checkbox"
+            onChange={onChange} />
+        )}
+
+        {(type === 'range') && (
+          <input
+            id={id}
+            max={max}
+            min={min}
+            name={id}
+            step={step}
+            type="range"
+            value={value}
+            onChange={onChange} />
+        )}
+      </dd>
+    </>
   )
 }
 

@@ -24,13 +24,13 @@ const OptionsList = props => {
     <div className="options-list">
       <header>{title}</header>
 
-      <ul>
+      <dl>
         {options.map(option => (
           <Option
             key={idify(option.label)}
             {...option} />
         ))}
-      </ul>
+      </dl>
     </div>
   )
 }
