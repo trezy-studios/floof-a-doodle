@@ -9,6 +9,7 @@ import PropTypes from 'prop-types'
 
 // Local imports
 import idify from '../helpers/idify'
+import Input from './Input'
 
 
 
@@ -21,6 +22,7 @@ const Option = props => {
     max,
     onChange,
     step,
+    suffix,
     type,
     value,
   } = props
@@ -44,30 +46,33 @@ const Option = props => {
         )}
 
         {(type === 'number') && (
-          <input
+          <Input
             id={id}
             name={id}
+            suffix={suffix}
             type={type}
             value={value}
             onChange={onChange} />
         )}
 
         {(type === 'checkbox') && (
-          <input
+          <Input
             checked={value}
             id={id}
             name={id}
+            suffix={suffix}
             type="checkbox"
             onChange={onChange} />
         )}
 
         {(type === 'range') && (
-          <input
+          <Input
             id={id}
             max={max}
             min={min}
             name={id}
             step={step}
+            suffix={suffix}
             type="range"
             value={value}
             onChange={onChange} />
@@ -82,6 +87,7 @@ Option.defaultProps = {
   min: 0,
   onChange: () => {},
   step: 1,
+  suffix: '',
 }
 
 Option.propTypes = {
@@ -90,6 +96,7 @@ Option.propTypes = {
   min: PropTypes.number,
   onChange: PropTypes.func,
   step: PropTypes.number,
+  suffix: PropTypes.string,
   type: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([
     PropTypes.bool,

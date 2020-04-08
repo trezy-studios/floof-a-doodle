@@ -44,6 +44,7 @@ const UserOptions = () => {
   })
   const sizeOption = useRef({
     label: 'Size',
+    suffix: 'px',
     type: 'number',
     value: 1,
   })
