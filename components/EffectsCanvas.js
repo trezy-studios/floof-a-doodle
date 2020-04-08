@@ -43,6 +43,7 @@ const EffectsCanvas = props => {
     authToken,
     channelID,
     color,
+    showCanvas,
     userID,
   } = useContext(LocalConfigContext)
   const { setLocalPixels } = useContext(PixelContext)
@@ -144,6 +145,7 @@ const EffectsCanvas = props => {
         ref={canvasElementRef}
         className="effects-canvas"
         height={height}
+        hidden={!showCanvas}
         width={width}
         onClick={handleCanvasClick} />
     </RequiresAuthentication>

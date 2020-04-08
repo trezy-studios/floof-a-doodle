@@ -22,6 +22,8 @@ const UserOptions = () => {
     opacity,
     setColor,
     setOpacity,
+    setShowCanvas,
+    showCanvas,
   } = useContext(LocalConfigContext)
 
   // Options are contained inside of `useRef` to prevent them from rerendering
@@ -63,8 +65,12 @@ const UserOptions = () => {
   })
   const showCanvasOption = useRef({
     label: 'Show Canvas?',
+    onChange: ({ target }) => {
+      showCanvasOption.current.value = target.checked
+      setShowCanvas(target.checked)
+    },
     type: 'checkbox',
-    value: true,
+    value: showCanvas,
   })
   const canvasOptions = useRef([
     opacityOption.current,

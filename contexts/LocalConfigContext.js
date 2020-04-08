@@ -20,7 +20,9 @@ const LOCAL_CONFIG_DEFAULTS = {
   setChannelID: () => {},
   setColor: () => {},
   setOpacity: () => {},
+  setShowCanvas: () => {},
   setUserID: () => {},
+  showCanvas: true,
 }
 const context = createContext(LOCAL_CONFIG_DEFAULTS)
 
@@ -33,6 +35,7 @@ const Provider = props => {
   const [channelID, setChannelID] = useState(LOCAL_CONFIG_DEFAULTS.channelID)
   const [color, setColor] = useState(LOCAL_CONFIG_DEFAULTS.color)
   const [opacity, setOpacity] = useState(LOCAL_CONFIG_DEFAULTS.opacity)
+  const [showCanvas, setShowCanvas] = useState(LOCAL_CONFIG_DEFAULTS.showCanvas)
   const [userID, setUserID] = useState(LOCAL_CONFIG_DEFAULTS.userID)
 
   const { children } = props
@@ -49,7 +52,9 @@ const Provider = props => {
         setChannelID,
         setColor,
         setOpacity,
+        setShowCanvas,
         setUserID,
+        showCanvas,
       }}>
       {children}
     </context.Provider>

@@ -43,6 +43,7 @@ const MainCanvas = props => {
   const {
     channelID,
     opacity,
+    showCanvas,
   } = useContext(LocalConfigContext)
   const canvasElementRef = createRef(null)
 
@@ -123,6 +124,7 @@ const MainCanvas = props => {
         ref={canvasElementRef}
         className="main-canvas"
         height={height}
+        hidden={!showCanvas}
         style={{ opacity: (opacity / 100) }}
         width={width} />
     </RequiresAuthentication>
